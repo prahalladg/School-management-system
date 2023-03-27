@@ -7,8 +7,9 @@ from django.template import loader
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from student.models import StudentInfo
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def addMarks(request):
 	'''Here we add all marks of student and send mail to student '''
 	if request.method == "POST":
@@ -44,7 +45,7 @@ def addMarks(request):
 	marks_form=studentMarksForm()
 	return render(request,'marks/addmarks.html',context={"addmarks":marks_form})
 
-
+@login_required
 def viewmarks(request):
 	'''display all marks of student'''
 
@@ -53,6 +54,7 @@ def viewmarks(request):
 	context={'marksdata':marksdata}
 	return HttpResponse(template.render(context, request))
 
+@login_required
 def editmarks(request,student_id):
 	'''Here we edit the marks and update '''
 
@@ -70,6 +72,7 @@ def editmarks(request,student_id):
 	diction={'edit_marks':form}
 	return render(request,'marks/edit_marks.html',context=diction)
 
+@login_required
 def deletemarks(request,student_id):
 	'''Here we delete the marks'''
 

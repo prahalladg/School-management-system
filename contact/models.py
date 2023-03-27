@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-'''model to display the contact detail in contact page'''
+'''model to display the contact detail of school'''
 class contactlist(models.Model):
     address=models.TextField(max_length=900, blank=False)
     email=models.CharField(max_length=100, blank=False)

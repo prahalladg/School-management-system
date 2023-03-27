@@ -5,8 +5,9 @@ from django.shortcuts import  render, redirect
 from django.contrib import messages
 from django.template import loader
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def addstudent(request):
 	''' Here we will add new student '''
 
@@ -22,7 +23,7 @@ def addstudent(request):
 	users_form=NewStudentForm()
 	return render(request,'student/addstudent.html',context={"add":users_form})
 
-
+@login_required
 def viewstudent(request):
 	'''here we will view all the student details'''
 
@@ -31,6 +32,7 @@ def viewstudent(request):
 	context={'studentdata':studentdata}
 	return HttpResponse(template.render(context, request))
 
+@login_required
 def editstudent(request,student_id):
 	'''Here we will edit the particular student through student_id'''
 
@@ -48,11 +50,11 @@ def editstudent(request,student_id):
 	diction={'edit_student':form}
 	return render(request,'student/editstudent.html',context=diction)
 
+@login_required
 def deletestudent(request,student_id):
 	'''Here we will delete the particular student details through student_id'''
 	student=StudentInfo.objects.get(pk=student_id)
 	student.delete()
 	messages.success(request, "Deleted successfully." )
 	return redirect('/student/viewstudent')
-	# diction={'delete_student':'Deleted successfully'}
-	# return render(request,'student/studentDetails.html',context=diction)
+	

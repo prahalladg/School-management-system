@@ -37,9 +37,9 @@ def authlogin(request):
 				messages.info(request, f"You are now logged in as {username}.")
 				return redirect("profile")
 			else:
-				messages.error(request,"Invalid username or password.")
+				messages.error(request,"Invalid Email or password.")
 		else:
-			messages.error(request,"Invalid username or password.")
+			messages.error(request,"Invalid Email or password.")
 	form = AuthenticationForm()
 	return render(request, 'authenticate/login.html', context={"login":form})
 

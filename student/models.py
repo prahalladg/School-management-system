@@ -30,10 +30,6 @@ class StudentInfo(models.Model):
     address=models.TextField(max_length=100, blank=False)
 
     def __str__(self):
-        # n=StudentInfo.objects.get(name=self.name)
-        # std_id=StudentInfo.objects.get(student_id=self.student_id)
-        # return '%s : %s ' % (n.name, std_id.student_id)
-        #return "%s : %s : %s" % (self.student_id, self.name, self.email)
         return self.name 
 
 

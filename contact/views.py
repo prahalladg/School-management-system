@@ -13,6 +13,8 @@ def contactus(request):
 
         contactformdata=contactform(name=name,email=email,subject=subject,message=message)
         contactformdata.save()
+        a=(contactform).objects.all()
+        print(a)
 
         send_mail(
     f'{subject}',
